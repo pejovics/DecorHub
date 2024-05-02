@@ -36,7 +36,7 @@ pipeline {
         // }
     }
 
-    post {
+    //post {
         //always {
             // Ovaj korak će se uvek izvršiti nakon svake faze
             // Na primer, ovde možete dodati korake za čišćenje ili oslobađanje resursa
@@ -49,5 +49,5 @@ pipeline {
             // Ovaj korak će se izvršiti samo ako je Pipeline neuspešno završen
             // Na primer, ovde možete dodati korake za slanje obaveštenja o grešci
         //}
-    }
+    //}
 }
