@@ -25,15 +25,19 @@ pipeline {
         }
         stage('Build') {
             steps {
+                dir('./frontend') {
                 // Korak za izgradnju Angular projekta
                 sh 'npm run build'
+                }
             }
         }
         stage('Test') {
             steps {
+                dir('./frontend') {
                 // Korak za pokretanje testova (opciono)
                 // Ovo možete izostaviti ako nemate testove
                 sh 'npm test'
+                }
             }
         }
         // stage('Deploy') {
