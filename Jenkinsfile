@@ -27,13 +27,13 @@ pipeline {
                 sh 'npm test'
             }
         }
-        stage('Deploy') {
-            steps {
-                // Korak za deploy aplikacije (opciono)
-                // Ovo možete izostaviti ako ne planirate deploy
-                // Na primer, možete kopirati izgrađene fajlove na server
-            }
-        }
+        // stage('Deploy') {
+        //     steps {
+        //         // Korak za deploy aplikacije (opciono)
+        //         // Ovo možete izostaviti ako ne planirate deploy
+        //         // Na primer, možete kopirati izgrađene fajlove na server
+        //     }
+        // }
     }
 
     post {
