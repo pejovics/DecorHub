@@ -16,8 +16,11 @@ pipeline {
         }
        stage('Install dependencies') {
             steps {
-                // Instalacija Angular zavisnosti
-                sh 'npm install'
+                dir('./frontend') {
+                    // Instalacija Angular zavisnosti
+                    sh 'npm install'
+                }
+
             }
         }
         stage('Build') {
