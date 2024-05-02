@@ -5,7 +5,11 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Korak za checkout repozitorijuma
-                git 'https://github.com/pejovics/DecorHub.git'
+                git url: 'https://github.com/pejovics/DecorHub.git', 
+                branch: 'main', 
+                // Dodajte opciju za ispisivanje debag informacija
+                changelog: true, 
+                poll: true
             }
         }
        stage('Install dependencies') {
