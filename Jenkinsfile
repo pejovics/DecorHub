@@ -65,7 +65,7 @@ pipeline {
                     charset: 'UTF-8',
                     from: '', mimeType: 'text/html',
                     replyTo: '',
-                    subject: "ERROR CI: Project name -> ${env.JOB_NAME}", 
+                    subject: "SUCCESSFULL CI: Project name -> ${env.JOB_NAME}", 
                     to: "stefandejanpejovic@gmail.com";  
          
             }
@@ -74,12 +74,14 @@ pipeline {
             // Ovaj korak će se izvršiti samo ako je Pipeline neuspešno završen
             // Na primer, ovde možete dodati korake za slanje obaveštenja o grešci
             script {
-                emailext attachlog: false, 
-                attachmentsPattern: 'example_file-yaml', 
-                from: 'stefandejanpejovic@gmail.com', 
-                body: 'Test Message', 
-                subject: 'Test Subject', 
-                to: 'stefandejanpejovic@gmail.com'
+                mail bcc: '', 
+                    body: "<b>Example</b><br>Project: ${env.JOB_NAME}  <br>Build Number: ${env.BUILD_NUMBER}  <br> URL de build: ${env.BUILD_URL} ",
+                    cc: '',
+                    charset: 'UTF-8',
+                    from: '', mimeType: 'text/html',
+                    replyTo: '',
+                    subject: "ERROR CI: Project name -> ${env.JOB_NAME}", 
+                    to: "stefandejanpejovic@gmail.com";  
             }
         }
     }
