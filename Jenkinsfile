@@ -61,8 +61,8 @@ pipeline {
             script {
                 emailext subject: 'Build Success Notification',
                          body: 'Your build was successful.',
-                         to: 'recipient@example.com',
-                         from: 'sender@example.com'
+                         to: 'stefandejanpejovic@gmail.com',
+                         from: 'stefandejanpejovic@gmail.com'
             }
         }
         failure {
