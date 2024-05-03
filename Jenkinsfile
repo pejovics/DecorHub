@@ -59,20 +59,24 @@ pipeline {
             // Ovaj korak će se izvršiti samo ako je Pipeline uspešno završen
             // Na primer, ovde možete dodati korake za slanje notifikacija ili obaveštenja
             script {
-                emailext subject: 'Build Success Notification',
-                         body: 'Your build was successful.',
-                         to: 'stefandejanpejovic@gmail.com',
-                         from: 'stefandejanpejovic@gmail.com'
+                emailext attachlog: false, 
+                attachmentsPattern: 'example_file-yaml', 
+                from: 'stefandejanpejovic@gmail.com', 
+                body: 'Test Message', 
+                subject: 'Test Subject', 
+                to: 'stefandejanpejovic@gmail.com'
             }
         }
         failure {
             // Ovaj korak će se izvršiti samo ako je Pipeline neuspešno završen
             // Na primer, ovde možete dodati korake za slanje obaveštenja o grešci
             script {
-                emailext subject: 'Build Failure Notification',
-                         body: 'Your build has failed.',
-                         to: 'recipient@example.com',
-                         from: 'sender@example.com'
+                emailext attachlog: false, 
+                attachmentsPattern: 'example_file-yaml', 
+                from: 'stefandejanpejovic@gmail.com', 
+                body: 'Test Message', 
+                subject: 'Test Subject', 
+                to: 'stefandejanpejovic@gmail.com'
             }
         }
     }
