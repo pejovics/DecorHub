@@ -8,7 +8,7 @@ pipeline {
             steps {
                 // Korak za checkout repozitorijuma
                 git url: 'https://github.com/pejovics/DecorHub.git', 
-                branch: 'main', 
+                branch: ${env.BRANCH_NAME}, 
                 // Dodajte opciju za ispisivanje debag informacija
                 changelog: true, 
                 poll: true
