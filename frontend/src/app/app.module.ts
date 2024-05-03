@@ -14,9 +14,9 @@ import { FormsModule } from '@angular/forms';
     RegistracijaComponent
   ],
   imports: [
+    FormsModule,
     BrowserModule,
-    AppRoutingModule,
-    FormsModule
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

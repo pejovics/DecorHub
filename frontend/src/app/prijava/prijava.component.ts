@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-prijava',
@@ -9,12 +11,16 @@ export class PrijavaComponent {
   username: string | undefined;
   password: string | undefined;
 
-  login() {
-    // Ovdje možete implementirati logiku za provjeru korisničkih podataka
-    // i slanje zahtjeva za prijavu na server
-    console.log('Korisničko ime:', this.username);
-    console.log('Lozinka:', this.password);
-    // Nakon što se podaci provjere na serveru, možete izvršiti redirekciju ili
-    // neku drugu akciju, kao što je prikazivanje poruke o uspješnoj prijavi.
-  }
+
+    login(loginForm: NgForm) {
+      // Proveravamo da li forma ima greške pre slanja podataka
+      if (loginForm.invalid) {
+        // Ako forma nije validna, obustavljamo proces prijave
+        return;
+      }
+
+      // Ako forma je validna, možete nastaviti sa obradom podataka (npr. slanjem na server)
+      console.log('Prijavljivanje korisnika sa korisničkim imenom:', this.username, 'i lozinkom:', this.password);
+    }
+
 }
