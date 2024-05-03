@@ -59,12 +59,15 @@ pipeline {
             // Ovaj korak će se izvršiti samo ako je Pipeline uspešno završen
             // Na primer, ovde možete dodati korake za slanje notifikacija ili obaveštenja
             script {
-                emailext attachlog: false, 
-                attachmentsPattern: 'example_file-yaml', 
-                from: 'stefandejanpejovic@gmail.com', 
-                body: 'Test Message', 
-                subject: 'Test Subject', 
-                to: 'stefandejanpejovic@gmail.com'
+                    mail bcc: '', 
+                    body: "<b>Example</b><br>Project:  <br>Build Number:  <br> URL de build: ",
+                    cc: '',
+                    charset: 'UTF-8',
+                    from: '', mimeType: 'text/html',
+                    replyTo: '',
+                    subject: "ERROR CI: Project name -> ", 
+                    to: "stefandejanpejovic@gmail.com";  
+         
             }
         }
         failure {
