@@ -42,6 +42,7 @@ describe('AuthService', () => {
   });
 
   it('should handle unauthorized error', () => {
+
     const username = 'test';
     const password = 'password';
 
