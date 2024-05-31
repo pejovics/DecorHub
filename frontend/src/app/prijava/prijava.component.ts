@@ -8,8 +8,12 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./prijava.component.css']
 })
 export class PrijavaComponent {
-  username: string | undefined;
-  password: string | undefined;
+
+  PASSWORD_MIN_LENGTH:number = 8;
+  USERNAME_MIN_LENGTH:number = 4;
+
+  username: string = "";
+  password: string = "";
 
 
     login(loginForm: NgForm) {
@@ -18,9 +22,27 @@ export class PrijavaComponent {
         // Ako forma nije validna, obustavljamo proces prijave
         return;
       }
+      if (!this.checkUsername(this.username) || !this.checkPassword(this.password))
+        return;
 
       // Ako forma je validna, možete nastaviti sa obradom podataka (npr. slanjem na server)
-      console.log('Prijavljivanje korisnika sa korisničkim imenom:', this.username, 'i lozinkom:', this.password);
+      console.log('Prijavljivanje korisnika sa korisničkim imenom:', this.username);
+    }
+
+    checkUsername(username: string){
+      if (username.length < this.USERNAME_MIN_LENGTH){
+        console.log('Username nije u skladu sa pravilima!')
+        return false
+      }
+      return true;
+    }
+
+    checkPassword(password: string){
+      if (password.length < this.PASSWORD_MIN_LENGTH){
+        console.log('Password nije u skladu sa pravilima!')
+        return false
+      }
+      return true;
     }
 
 }
