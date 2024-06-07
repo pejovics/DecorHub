@@ -1,0 +1,34 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #f0f0f0;
+}
+.container {
+  position: relative;
+}
+
+h1 {
+
+ font-size: xx-large;
+ text-align: center;
+
+}
+
+img {
+  display: block;
+  max-width: 100%; /* Ensures image is responsive */
+  width: 900px; /* Set the desired width */
+  height: auto; /* Maintain aspect ratio */
+}
+.dot {
+  position: absolute;
+  width: 20px; /* Povećajte veličinu */
+  height: 20px; /* Povećajte veličinu */
+  background-color: black;
+  border-radius: 50%;
+  border: 1px solid red; /* Debug border */
+  z-index: 10; /* Ensure dots are above the image */
+}

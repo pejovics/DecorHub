@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgForm } from '@angular/forms';
+import { AuthService } from '../servis.service';
 
 @Component({
   selector: 'app-prijava',
@@ -8,6 +9,8 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./prijava.component.css']
 })
 export class PrijavaComponent {
+
+  constructor(private service: AuthService) { }
 
   PASSWORD_MIN_LENGTH:number = 8;
   USERNAME_MIN_LENGTH:number = 4;
@@ -22,8 +25,14 @@ export class PrijavaComponent {
         // Ako forma nije validna, obustavljamo proces prijave
         return;
       }
-      if (!this.checkUsername(this.username) || !this.checkPassword(this.password))
-        return;
+      //if (!this.checkUsername(this.username) || !this.checkPassword(this.password))
+      //  return;
+
+      this.service.login(this.username, this.password).subscribe((korisnik)=>{
+
+        console.log(korisnik.username + " " + korisnik.password);
+
+      });
 
       // Ako forma je validna, možete nastaviti sa obradom podataka (npr. slanjem na server)
       console.log('Prijavljivanje korisnika sa korisničkim imenom:', this.username);

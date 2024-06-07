@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+.dot {
+  position: absolute !important;
+  width: 10px !important;
+  height: 10px !important;
+  background-color: black !important;
+  border-radius: 50% !important;
+  border: 1px solid black !important;
+  z-index: 10 !important;
+}

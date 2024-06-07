@@ -7,7 +7,7 @@ import { User } from './models/User';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://example.com/api'; // Postaviti odgovarajući URL za backend API
+  private apiUrl = 'http://localhost:4000/users'; // Postaviti odgovarajući URL za backend API
 
   constructor(private http: HttpClient) {}
 
