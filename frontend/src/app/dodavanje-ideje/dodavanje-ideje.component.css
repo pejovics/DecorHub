@@ -32,3 +32,33 @@ img {
   border: 1px solid red; /* Debug border */
   z-index: 10; /* Ensure dots are above the image */
 }
+
+
+.form-container {
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ddd;
+  padding: 5px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  white-space: nowrap;
+}
+
+.form-container input {
+  display: block;
+  margin-bottom: 5px;
+  width: calc(100% - 10px);
+}
+
+.form-container button {
+  display: block;
+  margin-top: 5px;
+  width: calc(100% - 10px);
+}
+
+.line {
+  position: absolute;
+  border: 1px dashed black;
+  pointer-events: none; /* Da bismo sprečili da linija blokira klikove */
+  z-index: 100; /* Postavite na odgovarajuću vrednost */
+}
