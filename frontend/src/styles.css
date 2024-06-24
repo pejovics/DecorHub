@@ -67,3 +67,20 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 mat-card {
   margin-bottom: 20px;
 }
+
+
+.item-wrapper {
+  margin-top: 20px; /* Razmak između svakog elementa u listi */
+}
+
+#element-list {
+  display: grid;
+  gap: 120px; /* Razmak između elemenata */
+}
+
+.saved-item {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f0f0f0;
+}

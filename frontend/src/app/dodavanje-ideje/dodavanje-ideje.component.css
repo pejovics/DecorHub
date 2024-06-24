@@ -62,3 +62,11 @@ img {
   pointer-events: none; /* Da bismo sprečili da linija blokira klikove */
   z-index: 100; /* Postavite na odgovarajuću vrednost */
 }
+
+.saved-item {
+  margin-bottom: 10px; /* Prilagodite razmak između elemenata prema potrebi */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f0f0f0;
+}

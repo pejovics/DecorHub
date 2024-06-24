@@ -3,47 +3,131 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Image with Dots</title>
+  <title>Dodavanje Prazne Enterijerske Ideje</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f8f9fa;
+    }
+    .container {
+      width: 100%;
+      max-width: 1400px; /* Povećana maksimalna širina */
+      min-width: 1000px; /* Minimalna širina kako bi se sprečilo previše sužavanje */
+      height: 100%;
+      display: flex; /* Horizontalni raspored */
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      background-color: #fff;
+      border-radius: 8px;
+    }
+    .left-container {
+      flex-grow: 1; /* Fleksibilan prostor */
+      margin-right: 20px; /* Razmak između kontejnera */
+    }
+    .right-container {
+      width: 300px; /* Fiksna širina */
+      background-color: #e9ecef;
+      padding: 10px;
+      border-radius: 8px;
+      overflow-y: auto; /* Dodaje skrol trake za preveliki sadržaj */
+    }
+    .badge-large {
+      font-size: 18px;
+      color: sienna;
+    }
+    .table-container {
+      width: 100%;
+      margin-top: 20px;
+    }
+    .btn-container {
+      margin-top: 20px;
+      text-align: center;
+      width: 100%;
+    }
+    .image-container {
+      width: 100%;
+      height: auto;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .image-container img {
+      width: 100%;
+      max-width: 900px;
+      height: auto;
+      border-radius: 8px;
+    }
+    .svg-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none; /* Allows clicks to pass through SVG to image */
+    }
+    @media (max-width: 1200px) {
+      .container {
+        flex-direction: column; /* Vertikalni raspored na manjim ekranima */
+        height: auto; /* Prilagodljiva visina */
+      }
+      .left-container {
+        margin-right: 0;
+        margin-bottom: 20px; /* Razmak ispod na manjim ekranima */
+      }
+      .right-container {
+        width: 100%; /* Puna širina na manjim ekranima */
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="container">
-    <h1>Dodavanje ideje</h1>
-
-    <!-- <canvas #myCanvas width="900" height="900" style=" position: absolute; z-index: 1;"></canvas> -->
-
-
-    <img #myImage id="image" style="" src="../../assets/slika1.jpeg" alt="Sample Image" (click)="onImageClick($event)">
+    <div class="left-container">
+      <h1>Dodavanje Prazne Enterijerske Ideje</h1>
+      <div class="image-container">
+        <img id="image" #myImage (click)="onImageClick($event)" src="../../assets/slika1.jpeg" alt="Sample Image">
+        <svg class="svg-overlay" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <!-- SVG sadržaj (poput tačaka, linija itd.) -->
+        </svg>
+      </div>
+      <div class="btn-container">
+        <button class="btn btn-primary" (click)="loadImageDetection()">Start Detection</button>
+        <button type="button" class="btn btn-primary">
+          Total Objects Detected - <span class="badge bg-secondary">0</span>
+        </button>
+        <span id="dataLoading" class="badge-large" style="display:none;">Object detection started. Please wait...</span>
+      </div>
+      <div class="table-container">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Detected Object</th>
+              <th>Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Popunjavanje redova iz JavaScript-a -->
+          </tbody>
+        </table>
+      </div>
+      <div class="btn-container">
+        <button class="btn btn-success" (click)="dodajProdukte()">Dodaj Produkte</button>
+        <button class="btn btn-info" (click)="dodavanjeIdeje()">Dodaj Ideju</button>
+      </div>
+    </div>
+    <div class="right-container">
+      <h2>Vaši elementi</h2>
+      <div id="element-list">
+        <!-- Elementi će biti dodati ovde -->
+      </div>
+    </div>
   </div>
-
-
-
-  <button class="btn btn-primary" (click)="loadImageDetection()">Start Detection</button>
-
-  <button type="button" class="btn btn-primary" style="font-size: 15px;">Total Objects Detected - <span class="badge"
-    style="font-size: 15px;">{{totalObjectsDetected}}</span></button>
-&nbsp;&nbsp;
-<span class="badge" *ngIf="dataLoading" style="font-size: 18px;color:sienna">object detection started Please
-  wait...</span>
-<hr>
-
-<div class="snap-container" style="margin-top: 20px;">
-  <table>
-    <tr>
-      <th>Detected Object</th>
-      <th>Score</th>
-    </tr>
-    <tr *ngFor="let predictionValues of predictionValue">
-      <td>{{predictionValues.class}}</td>
-      <td>{{predictionValues.score}}</td>
-    </tr>
-  </table>
-</div>
-<div>
-  <button class="btn btn-primary" (click)="dodajProdukte()">Dodaj produkte</button>
-</div>
-<div>
-  <button class="btn btn-primary" (click)="dodavanjeIdeje()">Dodaj ideju</button>
-</div>
-
-</body>
+  </body>
 </html>

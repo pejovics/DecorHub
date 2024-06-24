@@ -9,4 +9,5 @@ export class Ideja {
   ocena: Ocena = null;
   objekti: Objekat[] = [];
   produkti: Produkt[] = [];
+  slika: string | undefined;
 }

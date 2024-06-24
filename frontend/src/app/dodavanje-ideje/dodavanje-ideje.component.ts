@@ -4,6 +4,7 @@ import * as tf from '@tensorflow/tfjs';
 import { Produkt } from '../models/Produkt';
 import { IdejaServis } from '../ideja-servis.service';
 import { Ideja } from '../models/Ideja';
+import { Container } from './Container';
 
 @Component({
   selector: 'app-dodavanje-ideje',
@@ -15,6 +16,9 @@ export class DodavanjeIdejeComponent {
 
   @ViewChild('myCanvas') myCanvas!: ElementRef<HTMLCanvasElement>;
   private ctx: CanvasRenderingContext2D | null = null;
+
+
+  listContainer : Container[] = []
 
   width: number = 500;
   height: number = 500;
@@ -39,20 +43,23 @@ export class DodavanjeIdejeComponent {
   }
 
   onImageClick(event: MouseEvent) {
+    //alert("eeee")
     const image = event.target as HTMLImageElement;
     const container = image.parentElement;
     const dot = document.createElement('div');
     dot.classList.add('dot');
     const rect = image.getBoundingClientRect();
-    dot.style.left = event.clientX - rect.left - 5 + 'px';
+    dot.style.left = event.clientX - rect.left  + 'px';
 
-    dot.style.top = event.clientY - rect.top + 75 + 'px';
+    dot.style.top = event.clientY - rect.top  + 'px';
 
     container?.appendChild(dot);
 
     const formContainer = document.createElement('div');
     formContainer.classList.add('form-container');
     formContainer.classList.add('show'); // Dodajte klasu koja pokreće animaciju
+
+
 
     const svgNS = 'http://www.w3.org/2000/svg';
     const svgElement = document.createElementNS(svgNS, 'svg');
@@ -76,6 +83,8 @@ export class DodavanjeIdejeComponent {
 
     container?.appendChild(svgElement);
 
+    this.listContainer.push(new Container(formContainer, lineElement))
+
     // Kreirajte polja za unos
     const nameInput = document.createElement('input');
     nameInput.setAttribute('type', 'text');
@@ -97,8 +106,21 @@ export class DodavanjeIdejeComponent {
 
       this.ideje.push(new Produkt(name, color, dimensions));
 
+      const itemWrapper = document.createElement('div');
+      itemWrapper.classList.add('item-wrapper');
+      itemWrapper.appendChild(formContainer);
+      lineElement.remove()
+
       // Sakrijte ili uklonite formular nakon čuvanja
-      formContainer.remove();
+      formContainer.removeAttribute('style');
+      //formContainer.classList.add('saved-item');
+      //formContainer.remove();
+
+
+      const elementList = document.getElementById('element-list');
+      if (elementList) {
+        elementList.appendChild(itemWrapper);
+      }
     });
 
     formContainer.appendChild(nameInput);
@@ -109,7 +131,7 @@ export class DodavanjeIdejeComponent {
     //container?.appendChild(dot);
     container?.parentElement?.append(formContainer);
     lineElement.setAttribute('x2', formContainer.offsetLeft + '');
-    lineElement.setAttribute('y2', formContainer.offsetTop - formContainer.clientHeight + ''
+    lineElement.setAttribute('y2', formContainer.offsetTop + ''
     );
 
     let isDragging = false;
@@ -132,7 +154,7 @@ export class DodavanjeIdejeComponent {
         lineElement.setAttribute('x2', parseInt(formContainer.style.left) + '');
         lineElement.setAttribute(
           'y2',
-          parseInt(formContainer.style.top) - formContainer.clientHeight + ''
+          parseInt(formContainer.style.top) + ''
         );
       }
     }
@@ -202,10 +224,40 @@ export class DodavanjeIdejeComponent {
   dodavanjeIdeje() {
     const ideja: Ideja = new Ideja();
 
+    ideja.madeBy = "stefanp";
+
+    ideja.produkti = this.ideje;
+    ideja.slika = this.convertImageToBase64()!;
+
     this.service.dodajIdeju(ideja).subscribe((resp) => {
       if (resp.code == '200') {
         alert('uspesno');
       }
     });
+  }
+
+  convertImageToBase64() {
+    if (!this.myImage || !this.myImage.nativeElement) {
+      console.error('No image found!');
+      return null;
+    }
+
+    const image = this.myImage.nativeElement;
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+
+    canvas.width = image.width;
+    canvas.height = image.height;
+
+    if (ctx) {
+      ctx.drawImage(image, 0, 0);
+
+      // Konvertujte u Base64
+      const dataURL = canvas.toDataURL('image/jpeg'); // Format može biti 'image/png' ili 'image/jpeg'
+      console.log('Base64 String:', dataURL);
+
+      return dataURL;
+    }
+    return null;
   }
 }
