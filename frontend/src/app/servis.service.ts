@@ -20,4 +20,14 @@ export class AuthService {
 
     return this.http.post<User>(this.apiUrl+"/register", { username:username, password:password });
   }
+
+  getUsers(): Observable<any[]>{
+
+    return this.http.get<User[]>(this.apiUrl+"/getUsers");
+  }
+
+  getUser(korisnik:string): Observable<User[]>{
+
+    return this.http.get<User[]>(this.apiUrl+"/getUser?" + korisnik);
+  }
 }

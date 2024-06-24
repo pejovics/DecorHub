@@ -8,13 +8,20 @@ import { Ideja } from './models/Ideja';
   providedIn: 'root'
 })
 export class IdejaServis {
-  private apiUrl = 'http://localhost:4000/idea'; // Postaviti odgovarajući URL za backend API
+  private apiUrl = 'http://localhost:4000'; // Postaviti odgovarajući URL za backend API
 
   constructor(private http: HttpClient) {}
 
-  dodajIdeju(ideja: Ideja): Observable<User> {
+  dodajIdeju(ideja: Ideja): Observable<{code:string}> {
 
-    return this.http.post<User>(this.apiUrl+"/dodajIdeju", { ideja: ideja});
+    return this.http.post<{code:string}>(this.apiUrl+"/dodajIdeju", { ideja: ideja});
 
   }
+
+  pretraga(pojamPretrage: string): Observable<Ideja[]> {
+
+    return this.http.post<Ideja[]>(this.apiUrl+"/pretraga", { pojamPretrage: pojamPretrage});
+
+  }
+
 }

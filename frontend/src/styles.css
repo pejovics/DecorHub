@@ -56,3 +56,14 @@ svg line {
   from { opacity: 0; }
   to { opacity: 1; }
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mat-list-item {
+  justify-content: space-between;
+}
+
+mat-card {
+  margin-bottom: 20px;
+}

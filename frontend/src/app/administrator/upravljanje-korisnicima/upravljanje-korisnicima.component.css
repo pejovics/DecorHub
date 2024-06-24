@@ -1,0 +1,7 @@
+.mat-list-item {
+  justify-content: space-between;
+}
+
+mat-card {
+  margin-bottom: 20px;
+}

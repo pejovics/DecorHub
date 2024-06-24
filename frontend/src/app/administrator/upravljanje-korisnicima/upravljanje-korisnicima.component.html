@@ -1,0 +1,20 @@
+<div style="margin: 20px;">
+  <mat-card>
+    <mat-form-field appearance="outline" style="width: 100%;">
+      <mat-label>Pretrazi korisnika</mat-label>
+      <input matInput placeholder="Pretrazi korisnika" [formControl]="searchControl">
+      <button mat-icon-button matSuffix (click)="pretragaKorisnika(searchControl.value!)">
+        <mat-icon>search</mat-icon>
+      </button>
+    </mat-form-field>
+  </mat-card>
+
+  <mat-list>
+    <mat-list-item *ngFor="let kor of korisnici">
+      {{ kor.username }}
+      <button mat-button color="warn" matSuffix (click)="blokirajKorisnika(kor)">
+        Blokiraj
+      </button>
+    </mat-list-item>
+  </mat-list>
+</div>
