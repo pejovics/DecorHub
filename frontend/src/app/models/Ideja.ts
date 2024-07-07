@@ -7,7 +7,9 @@ export class Ideja {
   id: number = 0;
   madeBy: string = "";
   ocena: Ocena = null;
+  tagovi: {naziv: String}[] = [];
   objekti: Objekat[] = [];
   produkti: Produkt[] = [];
   slika: string | undefined;
+  autor: string = "";
 }

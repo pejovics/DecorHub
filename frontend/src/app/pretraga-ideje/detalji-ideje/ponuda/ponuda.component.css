@@ -1,0 +1,37 @@
+.product-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #d3d3d3;
+  padding: 10px;
+  border: 1px solid #333;
+  border-radius: 4px;
+  max-width: 600px;
+}
+
+.product-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-details b {
+  margin-bottom: 5px;
+}
+
+.boja-label {
+  display: inline-block; /* Postavljamo da bude inline element */
+  margin-bottom: 5px; /* Opciono, da bismo dodali prostor ispod label */
+  margin-right: 10px; /* Razmak između label i ngx-colors komponente */
+}
+
+.product-image img {
+  max-width: 120px;
+  height: auto;
+  border-radius: 4px;
+}
+.disabled-color-picker {
+
+  pointer-events: none;
+  cursor: not-allowed; /* Promena kursora */
+  /* Ostale stilizacije po potrebi */
+}

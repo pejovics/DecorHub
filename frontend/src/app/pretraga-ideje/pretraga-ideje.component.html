@@ -1,7 +1,16 @@
-
-<div>
-  Pretraga ideje:
-  <input type="text" placeholder="Unesite pojam" [(ngModel)]="pojamPretrage">
-  <button (click)="pretraga()">Pretrazi</button>
+<ngx-spinner
+    bdColor="rgba(51, 51, 51, 0.8)"
+    size="large"
+    color="#fff"
+    type="ball-spin-clockwise"
+    [fullScreen]="true">
+  </ngx-spinner>
+<div class="pretraga-container">
+  <div class="input-container">
+    <input type="text" placeholder="Unesite pojam pretrage" (keyup.enter)="onEnter($event)" [(ngModel)]="pojamPretrage" class="pretraga-input">
+  </div>
+</div>
+<div class="ideas-grid">
+  <app-ideja-kartica *ngFor="let idea of ideje" [ideja]="idea"></app-ideja-kartica>
 </div>
 

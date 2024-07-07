@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -19,6 +19,17 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
+import { IdejaKarticaComponent } from './pretraga-ideje/ideja-kartica/ideja-kartica.component';
+import { DetaljiIdejeComponent } from './pretraga-ideje/detalji-ideje/detalji-ideje.component';
+import { PonudaComponent } from './pretraga-ideje/detalji-ideje/ponuda/ponuda.component';
+import { HeaderComponent } from './header/header.component';
+import { PonudaInputComponent } from './pretraga-ideje/detalji-ideje/ponuda-input/ponuda-input.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { MojeIdejeComponent } from './pretraga-ideje/detalji-ideje/moje-ideje/moje-ideje.component';
+import { MatSliderModule } from '@angular/material/slider';
+import { RangeSliderComponent } from './pretraga-ideje/detalji-ideje/range-slider/range-slider.component';
+
+import { NgxColorsModule } from 'ngx-colors'
 
 @NgModule({
   declarations: [
@@ -28,7 +39,14 @@ import { MatCardModule } from '@angular/material/card';
     DodavanjeIdejeComponent,
     PretragaIdejeComponent,
     UpravljanjeKorisnicimaComponent,
-    UpravljanjeIdejamaComponent
+    UpravljanjeIdejamaComponent,
+    IdejaKarticaComponent,
+    DetaljiIdejeComponent,
+    PonudaComponent,
+    HeaderComponent,
+    PonudaInputComponent,
+    MojeIdejeComponent,
+    RangeSliderComponent
   ],
   imports: [
     FormsModule,
@@ -43,14 +61,19 @@ import { MatCardModule } from '@angular/material/card';
     MatIconModule,
     MatButtonModule,
     MatListModule,
-    MatCardModule
+    MatCardModule,
+    NgxSpinnerModule,
+    MatSliderModule,
+    NgxColorsModule
   ],
   exports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxSpinnerModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

@@ -1,14 +1,20 @@
+import { Ponuda } from "./Ponuda";
+
 export class Produkt {
 
   id: number = 0;
   naziv: string = "";
   boja: string = "";
-  dimenzije: number = 0;
+  dimenzije: string = "";
+  ponude: Ponuda[] = [];
+  tacka: [string, string] = ["", ""];
 
-   constructor(naziv: string, boja: string, dimenzije: number){
+   constructor(id: number,naziv: string, boja: string, dimenzije: string, tacka: [string, string], ponude: []){
+    this.id = id;
     this.naziv = naziv;
     this.boja = boja;
     this.dimenzije = dimenzije;
+    this.tacka = tacka;
   }
 
 

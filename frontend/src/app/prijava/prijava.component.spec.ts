@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PrijavaComponent } from './prijava.component';
 import { FormsModule, NgForm } from '@angular/forms';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('PrijavaComponent', () => {
   let component: PrijavaComponent;
@@ -10,7 +11,8 @@ describe('PrijavaComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [PrijavaComponent],
-      imports: [FormsModule],
+      imports: [FormsModule,
+        HttpClientTestingModule]
     });
     fixture = TestBed.createComponent(PrijavaComponent);
     component = fixture.componentInstance;

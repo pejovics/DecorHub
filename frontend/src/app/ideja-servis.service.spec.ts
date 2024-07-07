@@ -1,13 +1,15 @@
 import { TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { IdejaServis } from './ideja-servis.service';
 
-import { IdejaServisService } from './ideja-servis.service';
-
-describe('IdejaServisService', () => {
-  let service: IdejaServisService;
+describe('IdejaService', () => {
+  let service: IdejaServis;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(IdejaServisService);
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule]
+    });
+    service = TestBed.inject(IdejaServis);
   });
 
   it('should be created', () => {

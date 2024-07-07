@@ -6,14 +6,20 @@ import { DodavanjeIdejeComponent } from './dodavanje-ideje/dodavanje-ideje.compo
 import { PretragaIdejeComponent } from './pretraga-ideje/pretraga-ideje.component';
 import { UpravljanjeKorisnicimaComponent } from './administrator/upravljanje-korisnicima/upravljanje-korisnicima.component';
 import { UpravljanjeIdejamaComponent } from './administrator/upravljanje-idejama/upravljanje-idejama.component';
+import { DetaljiIdejeComponent } from './pretraga-ideje/detalji-ideje/detalji-ideje.component';
+import { MojeIdejeComponent } from './pretraga-ideje/detalji-ideje/moje-ideje/moje-ideje.component';
+import { authGuard } from './pretraga-ideje/detalji-ideje/auth.guard';
 
 const routes: Routes = [
   { path: 'prijava', component: PrijavaComponent },
+  { path: '', component: PrijavaComponent },
   { path: 'registracija', component: RegistracijaComponent },
-  { path: 'dodavanje_ideje', component: DodavanjeIdejeComponent },
-  { path: 'pretraga_ideje', component: PretragaIdejeComponent },
-  { path: 'admin/korisnici', component: UpravljanjeKorisnicimaComponent },
-  { path: 'admin/ideje', component: UpravljanjeIdejamaComponent }
+  { path: 'dodavanje_ideje', component: DodavanjeIdejeComponent,canActivate: [authGuard] },
+  { path: 'pretraga_ideje', component: PretragaIdejeComponent, canActivate: [authGuard] },
+  { path: 'admin/korisnici', component: UpravljanjeKorisnicimaComponent, canActivate: [authGuard] },
+  { path: 'admin/ideje', component: UpravljanjeIdejamaComponent, canActivate: [authGuard] },
+  { path: 'detalji-ideje/:id', component: DetaljiIdejeComponent, canActivate: [authGuard] },
+  { path: 'moje-ideje', component: MojeIdejeComponent, canActivate: [authGuard] }
 ]
 ;
 

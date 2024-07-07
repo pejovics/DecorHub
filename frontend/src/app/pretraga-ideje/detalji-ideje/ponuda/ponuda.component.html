@@ -1,0 +1,18 @@
+<div class="product-card">
+  <div *ngIf="ponuda" class="product-details">
+    <b>Ponudač: <span>{{ ponuda.ponudjac }}</span></b>
+    <b>Cena: <span>{{ ponuda.cena }}</span></b>
+    <b>Dimenzije: <span>Dimenzije</span></b>
+    <b class="boja-label">Boja:</b>
+    <ngx-colors
+
+      ngx-colors-trigger
+      [(ngModel)]="selectedColor"
+      [format]="'hex'"
+      class="disabled-color-picker"
+    ></ngx-colors>
+  </div>
+  <div class="product-image">
+    <img [src]="imgSrc" alt="Proizvod">
+  </div>
+</div>

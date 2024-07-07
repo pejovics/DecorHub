@@ -20,7 +20,7 @@ export class UpravljanjeKorisnicimaComponent {
     this.servis.getUsers().subscribe((users)=>{
 
       users.forEach(element =>{
-        this.korisnici?.push(new User(element.id, element.kor_ime, element.email, element.lozinka))}
+        this.korisnici?.push(new User(element.id, element.kor_ime, element.email, element.lozinka, element.type))}
       );
 
     });

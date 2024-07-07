@@ -17,7 +17,7 @@
     }
     .container {
       width: 100%;
-      max-width: 1400px; /* Povećana maksimalna širina */
+      max-width: 2000px; /* Povećana maksimalna širina */
       min-width: 1000px; /* Minimalna širina kako bi se sprečilo previše sužavanje */
       height: 100%;
       display: flex; /* Horizontalni raspored */
@@ -25,10 +25,85 @@
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       background-color: #fff;
       border-radius: 8px;
+      margin: 0 auto; /* Centriranje containera */
+    }
+    .left-sidebar {
+      width: 300px; /* Širina bočne trake */
+      background-color: #f0f0f0;
+      padding: 10px;
+      border-radius: 8px;
+      margin-right: 20px; /* Razmak između kontejnera */
+      border: 1px solid #ccc; /* Dodajemo ivicu */
+      overflow: hidden; /* Skrivanje ivice ako su elementi previše zaobljeni */
+    }
+    .left-sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .left-sidebar ul li {
+      margin-bottom: 5px;
+    }
+    .left-sidebar ul li a {
+      display: block;
+      padding: 5px 10px;
+      border-radius: 20px; /* Zaobljenje ivica tagova */
+      background-color: #e9ecef; /* Boja pozadine tagova */
+      color: #333;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+    .left-sidebar ul li a:hover {
+      background-color: #ccc; /* Promena boje pozadine na hover */
+    }
+    .left-sidebar ul li button {
+      position: absolute;
+      right: 5px; /* Razmak sa desne strane */
+      top: 50%;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      color: #ff5e5e; /* Boja dugmeta za zatvaranje */
+      font-size: 14px;
+      cursor: pointer;
+      padding: 0;
+    }
+    .left-sidebar .tag-input-container {
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+    }
+    .left-sidebar input {
+      flex-grow: 1;
+      padding: 5px;
+      border-radius: 20px; /* Zaobljenje ivica unosa */
+      border: 1px solid #ccc;
+      margin-right: 5px;
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+    .left-sidebar input:focus {
+      border-color: #007bff;
+    }
+    .left-sidebar .add-tag-btn {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background-color: #007bff;
+      border: none;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .left-sidebar .add-tag-btn:hover {
+      background-color: #0056b3;
     }
     .left-container {
       flex-grow: 1; /* Fleksibilan prostor */
-      margin-right: 20px; /* Razmak između kontejnera */
+      min-width: 700px; /* Minimalna širina sadržaja u left-container */
     }
     .right-container {
       width: 300px; /* Fiksna širina */
@@ -64,6 +139,14 @@
       height: auto;
       border-radius: 8px;
     }
+    .canvas-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
     .svg-overlay {
       position: absolute;
       top: 0;
@@ -71,6 +154,42 @@
       width: 100%;
       height: 100%;
       pointer-events: none; /* Allows clicks to pass through SVG to image */
+    }
+    .left-sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .left-sidebar ul li {
+      margin-bottom: 5px;
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+    .left-sidebar ul li a {
+      display: block;
+      padding: 5px 10px;
+      border-radius: 20px; /* Zaobljenje ivica tagova */
+      background-color: #e9ecef; /* Boja pozadine tagova */
+      color: #333;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+      flex-grow: 1;
+    }
+    .left-sidebar ul li a:hover {
+      background-color: #ccc; /* Promena boje pozadine na hover */
+    }
+    .left-sidebar ul li button {
+      position: absolute;
+      right: 5px; /* Razmak sa desne strane */
+      top: 50%;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      color: #ff5e5e; /* Boja dugmeta za zatvaranje */
+      font-size: 14px;
+      cursor: pointer;
+      padding: 0;
     }
     @media (max-width: 1200px) {
       .container {
@@ -88,11 +207,32 @@
   </style>
 </head>
 <body>
+  <ngx-spinner
+    bdColor="rgba(51, 51, 51, 0.8)"
+    size="large"
+    color="#fff"
+    type="ball-spin-clockwise"
+    [fullScreen]="true">
+  </ngx-spinner>
   <div class="container">
+    <div class="left-sidebar">
+      <h3 style="text-align: center;">Tagovi</h3>
+      <ul>
+        <li *ngFor="let tag of tagovi">
+          <a href="#"># {{tag.naziv}}</a>
+          <button (click)="removeTag(tag)">x</button>
+        </li>
+      </ul>
+      <div class="tag-input-container">
+        <input type="text" [(ngModel)]="newTag" placeholder="Dodaj novi tag">
+        <button class="add-tag-btn" (click)="addTag()">+</button>
+      </div>
+    </div>
     <div class="left-container">
       <h1>Dodavanje Prazne Enterijerske Ideje</h1>
       <div class="image-container">
-        <img id="image" #myImage (click)="onImageClick($event)" src="../../assets/slika1.jpeg" alt="Sample Image">
+        <img id="image" [src]="imgSrc" #myImage (click)="onImageClick($event)" src="" alt="Sample Image">
+        <canvas #myCanvas class="canvas-overlay"></canvas>
         <svg class="svg-overlay" viewBox="0 0 100 100" preserveAspectRatio="none">
           <!-- SVG sadržaj (poput tačaka, linija itd.) -->
         </svg>
@@ -100,26 +240,15 @@
       <div class="btn-container">
         <button class="btn btn-primary" (click)="loadImageDetection()">Start Detection</button>
         <button type="button" class="btn btn-primary">
-          Total Objects Detected - <span class="badge bg-secondary">0</span>
+          Total Objects Detected - <span class="badge bg-secondary">{{this.totalObjectsDetected}}</span>
         </button>
         <span id="dataLoading" class="badge-large" style="display:none;">Object detection started. Please wait...</span>
       </div>
-      <div class="table-container">
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th>Detected Object</th>
-              <th>Score</th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- Popunjavanje redova iz JavaScript-a -->
-          </tbody>
-        </table>
+      <div class="btn-container">
+        <button class="btn btn-info" (click)="dodavanjeIdeje()">Dodaj Ideju</button>
       </div>
       <div class="btn-container">
-        <button class="btn btn-success" (click)="dodajProdukte()">Dodaj Produkte</button>
-        <button class="btn btn-info" (click)="dodavanjeIdeje()">Dodaj Ideju</button>
+        <button class="btn btn-info" (click)="dodavanjeIdeje()">Generisi ponude odmah</button>
       </div>
     </div>
     <div class="right-container">
@@ -129,5 +258,7 @@
       </div>
     </div>
   </div>
-  </body>
+</body>
 </html>
+
+<input type="file" (change)="onFileSelected($event)" accept="image/*">

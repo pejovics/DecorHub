@@ -1,0 +1,65 @@
+.ideas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-gap: 16px;
+  padding: 16px;
+}
+
+
+/* @media (max-width: 768px) {
+  .search-container {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .search-container input, .search-container button {
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+
+  .search-container input {
+    margin-bottom: 0;
+  }
+} */
+
+/* Stilizacija za pretragu ideja */
+
+.pretraga-container {
+  display: flex;
+  padding-top: 20px;
+  flex-direction: column; /* Prikazuje elemente u koloni */
+  align-items: center;
+  margin-bottom: 20px; /* Prilagodite margine prema potrebi */
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px; /* Razmak između input polja i dugmeta */
+}
+
+h1{
+  padding-top: 30px;
+  text-align: center;
+}
+
+.pretraga-input {
+  padding: 10px; /* Povećavamo unutrašnji padding za malo veći izgled */
+  border: 1px solid #ccc; /* Granica oko input polja */
+  border-radius: 24px; /* Veći radijus zaobljenih ivica */
+  font-size: 16px; /* Povećavamo veličinu fonta */
+  width: 300px; /* Povećavamo širinu input polja */
+  outline: none; /* Uklanjamo outline na fokusiranju */
+  transition: border-color 0.2s ease; /* Prijevod boje granice */
+}
+
+.pretraga-input::placeholder {
+  color: #999; /* Boja placeholder teksta */
+}
+
+.pretraga-input:focus {
+  border-color: #007bff; /* Boja granice na fokusiranju */
+}
+
+
+

@@ -1,0 +1,37 @@
+<div class="ponuda-input-card">
+  <form [formGroup]="ponudaForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="ponudjac">Ponudač:</label>
+      <input id="ponudjac" type="text" formControlName="ponudjac" />
+    </div>
+
+    <div class="form-group">
+      <label for="cena">Cena:</label>
+      <input id="cena" type="number" formControlName="cena" />
+    </div>
+
+    <div class="form-group">
+      <label for="dimenzije">Dimenzije:</label>
+      <input id="dimenzije" type="text" formControlName="dimenzije" />
+    </div>
+
+    <div class="form-group">
+      <label for="slika">Upload Slike:</label>
+      <input id="slika" type="file" (change)="onFileChange($event)" />
+      <div *ngIf="imagePreview" class="image-preview">
+        <img [src]="imagePreview" alt="Preview" />
+      </div>
+    </div>
+    <div >
+      <label for="boja">Boja:</label>
+      <ngx-colors
+          ngx-colors-trigger
+          [(ngModel)]="color"
+          (change)="handleColorChange($event)"
+          [format]="'hex'"
+          ></ngx-colors>
+    </div>
+
+    <button type="submit">Sačuvaj</button>
+  </form>
+</div>

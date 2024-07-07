@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prikaz Ideja</title>
+</head>
+<body>
+  <div *ngIf="ideja" class="idea-card">
+    <h3>{{ ideja.madeBy }}</h3>
+    <img [src]="imageUrl" (click)="detalji()" alt="Blob Image">
+    <div class="tags-container">
+      <span *ngFor="let tag of ideja.tagovi" class="tag">{{tag.naziv}}</span>
+    </div>
+  </div>
+</body>
+</html>

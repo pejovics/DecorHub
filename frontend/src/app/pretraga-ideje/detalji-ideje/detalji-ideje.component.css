@@ -1,0 +1,95 @@
+.saved-item {
+  margin-bottom: 10px; /* Prilagodite razmak između elemenata prema potrebi */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f0f0f0;
+}
+
+.item-wrapper {
+  margin-top: 20px; /* Razmak između svakog elementa u listi */
+}
+
+#element-list {
+  display: grid;
+  gap: 120px; /* Razmak između elemenata */
+}
+
+.canvas-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10; /* Osigurava da je canvas na vrhu */
+  pointer-events: auto; /* Omogućava hvatanje događaja */
+}
+
+img {
+  pointer-events: none; /* Prosljeđuje događaje kroz sliku */
+}
+.left-sidebar {
+  width: 300px; /* Širina bočne trake */
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 8px;
+  margin-right: 20px; /* Razmak između kontejnera */
+  border: 1px solid #ccc; /* Dodajemo ivicu */
+  overflow: hidden; /* Skrivanje ivice ako su elementi previše zaobljeni */
+}
+
+.left-sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.left-sidebar ul li {
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.left-sidebar ul li a {
+  display: block;
+  padding: 5px 10px;
+  border-radius: 20px; /* Zaobljenje ivica tagova */
+  /* background-color: #e9ecef;  */
+  color: #333;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  flex-grow: 1;
+}
+.left-sidebar ul li a:hover {
+  background-color: #ccc; /* Promena boje pozadine na hover */
+}
+.left-sidebar ul li button {
+  position: absolute;
+  right: 5px; /* Razmak sa desne strane */
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: #ff5e5e; /* Boja dugmeta za zatvaranje */
+  font-size: 14px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.active { /* Ili bilo koja druga boja */
+  background-color: #87c6a1;
+  font-weight: bold;
+}
+
+.inactive {
+  color: gray; /* Boja za neaktivne stavke */
+}
+
+mat-slider {
+  width: 300px;
+}
+
+.color-picker-container {
+  width: 300px;
+  margin: 20px auto;
+}
+

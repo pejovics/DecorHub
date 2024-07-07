@@ -1,0 +1,32 @@
+.idea-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+}
+
+.idea-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.tags-container {
+  display: flex;
+  flex-wrap: nowrap; /* Ovo spriječava prelazak tagova u novi red */
+  overflow-x: auto; /* Dodajemo horizontalni overflow za slučaj da tagovi pređu širinu kontejnera */
+  gap: 5px;
+  margin-top: 5px;
+  padding-bottom: 5px; /* Dodajemo padding-bottom da bismo osigurali prostor za horizontalni scrollbar */
+}
+
+.tag {
+  background-color: #e9ecef;
+  border-radius: 12px;
+  padding: 5px 10px;
+  font-size: 12px;
+  color: #333;
+  white-space: nowrap; /* Sprječava prelazak taga u novi red ako se tekst prelomi */
+}
+

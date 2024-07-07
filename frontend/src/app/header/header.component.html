@@ -1,0 +1,30 @@
+<header class="app-header">
+  <div class="header-left">
+    <a href="/" class="header-logo">DecorHub</a>
+    <nav class="header-nav">
+      <a href="/pretraga_ideje" class="nav-link">Početna</a>
+      <a href="/moje-ideje" class="nav-link">Moje Ideje</a>
+      <a href="/dodavanje_ideje" class="nav-link" *ngIf="(tipKorisnika != 'gost') && (tipKorisnika != 'ponudjac') " >Dodaj ideju</a>
+      <!-- <a href="/o-nama" class="nav-link">O nama</a>
+      <a href="/kontakt" class="nav-link">Kontakt</a> -->
+    </nav>
+  </div>
+  <div class="header-right">
+    <div class="header-notifications" (click)="otvoriSanduce()">
+        <img src="../../assets/email.png" alt="Novosti" class="notifications-icon">
+        <span class="notification-count" *ngIf="brojNovosti > 0">{{ brojNovosti }}</span>
+        <div class="notification-list" *ngIf="notifications.length > 0">
+          <div class="notification-item" *ngFor="let notification of obavestenjaPrikaz">
+            <p>{{ notification.tekst }}</p>
+            <button (click)="oznaciKaoProcitano(notification._id)">Označi kao pročitano</button>
+          </div>
+        </div>
+    </div>
+    <div class="header-user" (click)="otvoriProfil()">
+      <img src="assets/korisnik-avatar.jpg" alt="Korisnik" class="user-avatar">
+      <span class="user-name">{{ username }}</span>
+    </div>
+    <button class="header-logout" *ngIf="tipKorisnika != 'gost'" (click)="logout()">Odjavi se</button>
+    <button class="header-login" *ngIf="tipKorisnika == 'gost'" (click)="login()">Prijavi se</button>
+  </div>
+</header>

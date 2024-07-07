@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { AuthService } from '../servis.service';
 
 @Component({
@@ -7,31 +7,49 @@ import { AuthService } from '../servis.service';
   templateUrl: './registracija.component.html',
   styleUrls: ['./registracija.component.css']
 })
-export class RegistracijaComponent implements OnInit {
+export class RegistracijaComponent {
   registrationForm!: FormGroup;
 
   constructor(private fb: FormBuilder, private service: AuthService) { }
 
-  ngOnInit(): void {
-    this.registrationForm = this.fb.group({
-      username: ['', [Validators.required, Validators.minLength(3)]],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
-    });
+  base64Image: string = '';
+
+  user = {
+    username: '',
+    password: '',
+    type: 'kupac',
+    email: '',
+    phone: '',
+    image: '',
+    company: ''
+  };
+
+  register(form: NgForm) {
+    if (form.valid) {
+      //ODRADI SVE PROVERE ZA REGISTRACIJU
+      this.service.register(this.user).subscribe(resp =>{
+        alert("dobarr")
+
+      })
+    }
   }
 
-  registracija() {
-    if (this.registrationForm.valid) {
-      // Ovde možete dodati logiku za slanje podataka na server
+  onImageSelected(event: any) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.user.image = file;
 
 
-      console.log('Uspesna registracija naloga sa username: ' + this.registrationForm.get('username')?.value);
-      // this.service.register(this.registrationForm.get('username')?.value,
-      //  this.registrationForm.get('password')?.value
-      // );
-    }
-    else{
-      console.log('Neuspesna registracija naloga sa username: ' + this.registrationForm.get('username')?.value)
+      if (file) {
+
+        const reader = new FileReader();
+        reader.onload = () => {
+          this.base64Image = reader.result as string; // Postavi Base64 sadržaj
+          this.user.image = this.base64Image;
+        };
+        reader.readAsDataURL(file);
+      }
+
     }
   }
 }
