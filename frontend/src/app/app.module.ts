@@ -29,7 +29,8 @@ import { MojeIdejeComponent } from './pretraga-ideje/detalji-ideje/moje-ideje/mo
 import { MatSliderModule } from '@angular/material/slider';
 import { RangeSliderComponent } from './pretraga-ideje/detalji-ideje/range-slider/range-slider.component';
 
-import { NgxColorsModule } from 'ngx-colors'
+import { NgxColorsModule } from 'ngx-colors';
+import { AutoGenerisanjePonudaComponent } from './pretraga-ideje/detalji-ideje/auto-generisanje-ponuda/auto-generisanje-ponuda.component'
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { NgxColorsModule } from 'ngx-colors'
     HeaderComponent,
     PonudaInputComponent,
     MojeIdejeComponent,
-    RangeSliderComponent
+    RangeSliderComponent,
+    AutoGenerisanjePonudaComponent
   ],
   imports: [
     FormsModule,

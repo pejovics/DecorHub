@@ -37,8 +37,8 @@ export class PrijavaComponent {
       }
 
       this.service.login(this.username, this.password).subscribe((korisnik)=>{
-
-        this.router.navigate(['/pretraga_ideje']);
+;
+        this.router.navigate(['/pretraga_ideje'])
         sessionStorage.setItem("user", JSON.stringify(korisnik));
 
       });

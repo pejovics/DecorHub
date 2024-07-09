@@ -13,9 +13,9 @@ export class IdejaServis {
 
   constructor(private http: HttpClient) {}
 
-  dodajIdeju(ideja: Ideja): Observable<{code:string}> {
+  dodajIdeju(ideja: Ideja): Observable<{code:string, id:number}> {
 
-    return this.http.post<{code:string}>(this.apiUrl+"/dodajIdeju", { ideja: ideja});
+    return this.http.post<{code:string, id:number}>(this.apiUrl+"/dodajIdeju", { ideja: ideja});
 
   }
 
@@ -50,10 +50,13 @@ export class IdejaServis {
 
   }
 
-  dodajPonudu(ponuda: Ponuda, idIdeja: string, idProdukt: string){
-    alert('idd: ' + idProdukt)
-    return this.http.post<{code: string}>(this.apiUrl+"/dodajPonudu", { ponuda: ponuda, idIdeja: idIdeja, idProdukt: idProdukt});
+  dohvatiPonudeZaTag(nazivProizvoda: string){
 
+    return this.http.post<Ponuda[]>(this.apiUrl+"/dohvatiPonude", {nazivProizvoda: nazivProizvoda});
+  }
+
+  dodajPonudu(ponuda: Ponuda, idIdeja: string, idProdukt: string){
+    return this.http.post<{code: string}>(this.apiUrl+"/dodajPonudu", { ponuda: ponuda, idIdeja: idIdeja, idProdukt: idProdukt});
   }
 
   dohvatiObavestenja(userId: string): Observable<Notification[]> {

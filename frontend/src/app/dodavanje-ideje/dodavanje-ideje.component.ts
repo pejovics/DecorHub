@@ -6,6 +6,7 @@ import { IdejaServis } from '../ideja-servis.service';
 import { Ideja } from '../models/Ideja';
 import { Container } from './Container';
 import { NgxSpinnerModule, NgxSpinnerService } from "ngx-spinner";
+import { NavigationExtras, Router } from '@angular/router';
 
 @Component({
   selector: 'app-dodavanje-ideje',
@@ -32,7 +33,7 @@ export class DodavanjeIdejeComponent {
 
   base64Image: string | undefined;
 
-  constructor(private service: IdejaServis, private spinner: NgxSpinnerService) {
+  constructor(private service: IdejaServis, private spinner: NgxSpinnerService,  private router: Router) {
 
   }
 
@@ -45,6 +46,7 @@ export class DodavanjeIdejeComponent {
   totalObjectsDetected = 0;
   dataLoading = false;
   optImg : HTMLImageElement | undefined;
+  idNoveIdeje : number = 0;
 
   ngAfterViewInit() {
     if (this.myCanvas && this.myCanvas.nativeElement) {
@@ -190,6 +192,15 @@ export class DodavanjeIdejeComponent {
     }
   }
 
+  autoGenerisanje(){
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        id: this.idNoveIdeje
+      }
+    };
+    this.router.navigate(['/auto-generisanje-ponuda', this.idNoveIdeje])
+  }
+
   // load the tenseflow object detection model and send video stram to model an get response
   async loadImageDetection() {
     this.spinner.show()
@@ -256,7 +267,7 @@ export class DodavanjeIdejeComponent {
         this.spinner.hide();
    }, 2000);
       if (resp.code == '200') {
-        alert('uspesno');
+        this.idNoveIdeje = resp.id
       }
     });
   }
